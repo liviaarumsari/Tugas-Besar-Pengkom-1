@@ -17,9 +17,9 @@ def countdown(t):
 
 
 # MEMILIH OPSI DEFROST
-bahan = ["Meat", "Poultry", "Fish", "Bread", "Quick Defrost"]
-menit = [10, 20, 10, 2, 5]
-detik = [25, 10, 10, 30, 30]
+bahan = ["Meat", "Poultry", "Fish", "Bread"]
+menit = [10, 20, 10, 2]
+detik = [25, 10, 10, 30]
 
 i = False
 while i == False:
@@ -46,6 +46,7 @@ while i == False:
                     if 0.1 <= berat <= 4:
                         t = (menit[pilihan-1]*60) + detik[pilihan-1]
                         level = "HIGH"
+                        print(f"Anda akan melakukan Auto Defrost selama {menit[pilihan-1]} menit dan {detik[pilihan-1]} detik dengan level {level}.")
                         l = True
                     elif berat < 0.1:
                         print("Berat bahan harus lebih dari 0.1 kg!")
@@ -57,16 +58,17 @@ while i == False:
         i = True
     elif opsi_defrost == 2: # quick defrost
         print("QUICK DEFROST")
-        pilihan = 5
-        t = (menit[pilihan-1]*60) + detik[pilihan-1]
+        m = 5
+        s = 30
+        t = (m*60) + s
         level = "HIGH"
+        print(f"Anda akan melakukan Defrost selama {m} menit dan {s} detik dengan level {level}.")
         i = True
     else:
         print("Masukan berupa angka 1 atau 2!")
 
 
 # OUTPUT
-print(f"Anda akan melakukan Defrost selama {menit[pilihan-1]} menit dan {detik[pilihan-1]} detik dengan level {level}.")
 start = input("Ketik S untuk START atau Ketik B untuk BACK: ")
 if start == "S":
     print("Memulai Defrost")
