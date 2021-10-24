@@ -39,7 +39,7 @@ def mode():
             quick_action()
             bool_mode = True
         else:
-            print("Input tidak valid!")
+            print("Mode tidak tersedia!")
     kembali()
 
 
@@ -48,7 +48,7 @@ def kembali():
     bool_kembali = False
     while (bool_kembali == False):
         print("Apakah masih ingin menggunakan microwave?")
-        kembali = int(input("Ketik 1 untuk YA atau ketik 2 untuk TIDAK: "))
+        kembali = int(input("Ketik 1 untuk YA atau Ketik 2 untuk TIDAK: "))
         if (kembali == 1):
             mode()
             bool_kembali = True
@@ -91,12 +91,21 @@ def manual():
 
 # START MANUAL
 def start_manual(t):
-    start = int(input("Ketik 1 untuk START atau Ketik 2 untuk BACK: "))
-    if (start == 1):
-        print("Memulai Manual")
-        countdown(int(t))
-    elif (start == 2):
-        manual()
+    bool_start_manual = False
+    while (bool_start_manual == False):
+        start = int(input("Ketik 1 untuk START, 2 untuk BACK, atau 3 untuk MODE: "))
+        if (start == 1):
+            print("Memulai Manual")
+            countdown(int(t))
+            bool_start_manual = True
+        elif (start == 2):
+            manual()
+            bool_start_manual = True
+        elif (start == 3):
+            mode()
+            bool_start_manual = True
+        else:
+            print("Pilihan tidak tersedia!")
 
 
 # DEFROST ====================================================================================================
@@ -173,12 +182,21 @@ def quick_defrost():
 
 # START DEFROST
 def start_defrost(t):
-    start = int(input("Ketik 1 untuk START atau Ketik 2 untuk BACK: "))
-    if (start == 1):
-        print("Memulai Defrost")
-        countdown(int(t))
-    elif (start == 2):
-        defrost()
+    bool_start_defrost = False
+    while (bool_start_defrost == False):
+        start = int(input("Ketik 1 untuk START, 2 untuk BACK, atau 3 untuk MODE: "))
+        if (start == 1):
+            print("Memulai Defrost")
+            countdown(int(t))
+            bool_start_defrost = True
+        elif (start == 2):
+            defrost()
+            bool_start_defrost = True
+        elif (start == 3):
+            mode()
+            bool_start_defrost = True
+        else:
+            print("Pilihan tidak tersedia!")
 
 
 # REHEAT ====================================================================================================
@@ -201,12 +219,21 @@ def reheat():
 
 # START REHEAT
 def start_reheat(t):
-    start = int(input("Ketik 1 untuk START atau Ketik 2 untuk BACK: "))
-    if (start == 1):
-        print("Memulai Reheat")
-        countdown(int(t))
-    elif (start == 2):
-        reheat()
+    bool_start_reheat = False
+    while (bool_start_reheat == False):
+        start = int(input("Ketik 1 untuk START, 2 untuk BACK, atau 3 untuk MODE: "))
+        if (start == 1):
+            print("Memulai Reheat")
+            countdown(int(t))
+            bool_start_reheat = True
+        elif (start == 2):
+            reheat()
+            bool_start_reheat = True
+        elif (start == 3):
+            mode()
+            bool_start_reheat = True
+        else:
+            print("Pilihan tidak tersedia!")
 
 
 # QUICK ACTION ====================================================================================================
@@ -238,12 +265,21 @@ def quick_action():
 
 # START QUICK ACTION
 def start_quick_action(t):
-    start = int(input("Ketik 1 untuk START atau Ketik 2 untuk BACK: "))
-    if (start == 1):
-        print("Memulai Quick Action")
-        countdown(int(t))
-    elif (start == 2):
-        quick_action()
+    bool_start_quick_action = False
+    while (bool_start_quick_action == False):
+        start = int(input("Ketik 1 untuk START, 2 untuk BACK, atau 3 untuk MODE: "))
+        if (start == 1):
+            print("Memulai Quick Action")
+            countdown(int(t))
+            bool_start_quick_action = True
+        elif (start == 2):
+            quick_action()
+            bool_start_quick_action = True
+        elif (start == 3):
+            mode()
+            bool_start_quick_action = True
+        else:
+            print("Pilihan tidak tersedia!")
 
 
 # MEMULAI PROGRAM MICROWAVE ====================================================================================================
