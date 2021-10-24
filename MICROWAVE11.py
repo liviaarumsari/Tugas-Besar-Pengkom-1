@@ -53,6 +53,7 @@ def kembali():
             mode()
             bool_kembali = True
         elif (kembali == 2):
+            clearscreen()
             print("MEMATIKAN MICROWAVE\n")
             bool_kembali = True
         else:
@@ -120,9 +121,9 @@ def defrost():
 def auto_defrost():
     clearscreen()
     bahan = ["Meat", "Poultry", "Fish", "Bread"]
-    m_ad = [5, 10, 5, 0]
-    s_ad = [25, 10, 10, 50]
-    level_ad = "HIGH"
+    m_ad = [6, 5, 5, 3]
+    s_ad = [25, 15, 10, 50]
+    level_ad = ["HIGH","HIGH","HIGH","LOW"]
     n = 1
 
     print("\n======= AUTO DEFROST =======")
@@ -144,14 +145,16 @@ def auto_defrost():
     bool_berat = False
     while bool_berat == False:
         berat = float(input(f"Masukkan berat {bahan[pilihan_ad-1]} dalam kilogram: "))
-        if (0.1 <= berat < 4):
-            t = (m_ad[pilihan_ad-1]*60) + s_ad[pilihan_ad-1]
+        if (0.1 <= berat <= 4):
+            menit_ad = int(m_ad[pilihan_ad-1] - ((4-berat)//1))
+            detik_ad = s_ad[pilihan_ad-1]
+            t = (menit_ad*60) + detik_ad
             clearscreen()
-            print(f"Anda akan melakukan AUTO DEFROST selama {m_ad[pilihan_ad-1]} menit dan {s_ad[pilihan_ad-1]} detik dengan level {level_ad}.")
+            print(f"Anda akan melakukan AUTO DEFROST selama {menit_ad} menit dan {detik_ad} detik dengan level {level_ad[pilihan_ad-1]}.")
             start_defrost(t)
             bool_berat = True
         else:
-            print("Berat harus lebih di 0.1 kg dan 4 kg!")
+            print("Berat harus di antara 0.1 kg dan 4 kg!")
     
 
 # QUICK DEFROST
