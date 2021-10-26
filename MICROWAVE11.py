@@ -1,7 +1,7 @@
 # IMPORT OS ====================================================================================================
 import os
 def clearscreen():
-    os.system("clear")
+    os.system("cls")
 
 
 # TIME MODULE ====================================================================================================
@@ -17,6 +17,12 @@ def countdown(t):
 		t -= 1
 	print("PROSES SELESAI!\n")
 
+# FUNGSI PRINT ARRAY
+def print_kategori(array):
+            n = len(array)
+            for i in range (n):
+                print(str(i+1) + ". " + array[i])
+
 
 # PILIHAN MODE ====================================================================================================
 def mode():
@@ -24,7 +30,8 @@ def mode():
     bool_mode = False
     while (bool_mode == False):
         print("\n======= PROGRAM MICROWAVE =======")
-        print("Pilihan Mode Microwave: \n1. Manual \n2. Defrost \n3. Reheat \n4. Quick Action")
+        array_mode = ["Manual", "Defrost", "Reheat", "Quick Action"]
+        print_kategori(array_mode)
         mode = int(input("Masukkan mode yang dipilih: "))
         if (mode == 1):
             manual()
@@ -83,27 +90,27 @@ def manual():
             t = (m_manual * 60) + s_manual
             clearscreen()
             print(f"Anda akan melakukan MODE MANUAL selama {m_manual} menit dan {s_manual} detik dengan suhu {suhu}°C")
-            start_manual(t)
+            start("Manual", t, manual)
             bool_waktu = True
         else:
             print("Masukkan waktu kurang dari 30 menit!")
 
 
-# START MANUAL
-def start_manual(t):
-    bool_start_manual = False
-    while (bool_start_manual == False):
+# FUNGSI START
+def start(jenis_mode, t, func):
+    bool = False
+    while (bool == False):
         start = int(input("Ketik 1 untuk START, 2 untuk BACK, atau 3 untuk MODE: "))
         if (start == 1):
-            print("Memulai Manual")
+            print("Memulai " + jenis_mode)
             countdown(int(t))
-            bool_start_manual = True
+            bool = True
         elif (start == 2):
-            manual()
-            bool_start_manual = True
+            func()
+            bool = True
         elif (start == 3):
             mode()
-            bool_start_manual = True
+            bool = True
         else:
             print("Pilihan tidak tersedia!")
 
@@ -114,7 +121,9 @@ def defrost():
     print("\n======= DEFROST =======")
     bool_defrost = False
     while (bool_defrost == False):
-        print("Opsi Defrost: \n1. Auto Defrost \n2. Quick Defrost")
+        array_defrost = ["Auto Defrost", "Quick Defrost"]
+        print("Opsi Defrost: ")
+        print_kategori(array_defrost)
         opsi_defrost = int(input("Masukkan opsi defrost yang ingin dijalankan: "))
         if (opsi_defrost == 1):
             auto_defrost()
@@ -129,17 +138,14 @@ def defrost():
 # AUTO DEFROST
 def auto_defrost():
     clearscreen()
-    bahan = ["Meat", "Poultry", "Fish", "Bread"]
+    array_ad = ["Meat", "Poultry", "Fish", "Bread"]
     m_ad = [6, 5, 5, 3]
     s_ad = [25, 15, 10, 50]
     level_ad = ["HIGH","HIGH","HIGH","LOW"]
-    n = 1
 
     print("\n======= AUTO DEFROST =======")
     print("Pilih jenis bahan untuk Auto Defrost:")
-    for element in bahan:
-        print(f"{n}. {bahan[n-1]}")
-        n += 1
+    print_kategori(array_ad)
     
     # conditional bahan
     bool_bahan = False
@@ -153,14 +159,14 @@ def auto_defrost():
     # conditional berat
     bool_berat = False
     while bool_berat == False:
-        berat = float(input(f"Masukkan berat {bahan[pilihan_ad-1]} dalam kilogram: "))
+        berat = float(input(f"Masukkan berat {array_ad[pilihan_ad-1]} dalam kilogram: "))
         if (0.1 <= berat <= 4):
             menit_ad = int(m_ad[pilihan_ad-1] - ((4-berat)//1))
             detik_ad = s_ad[pilihan_ad-1]
             t = (menit_ad*60) + detik_ad
             clearscreen()
             print(f"Anda akan melakukan AUTO DEFROST selama {menit_ad} menit dan {detik_ad} detik dengan level {level_ad[pilihan_ad-1]}.")
-            start_defrost(t)
+            start("Defrost", t, defrost)
             bool_berat = True
         else:
             print("Berat harus di antara 0.1 kg dan 4 kg!")
@@ -177,26 +183,7 @@ def quick_defrost():
     print("\n======= QUICK DEFROST =======")
     print(f"Anda akan melakukan QUICK DEFROST selama {m_qd} menit dan {s_qd} detik dengan level {level_qd}.")
     
-    start_defrost(t)
-
-
-# START DEFROST
-def start_defrost(t):
-    bool_start_defrost = False
-    while (bool_start_defrost == False):
-        start = int(input("Ketik 1 untuk START, 2 untuk BACK, atau 3 untuk MODE: "))
-        if (start == 1):
-            print("Memulai Defrost")
-            countdown(int(t))
-            bool_start_defrost = True
-        elif (start == 2):
-            defrost()
-            bool_start_defrost = True
-        elif (start == 3):
-            mode()
-            bool_start_defrost = True
-        else:
-            print("Pilihan tidak tersedia!")
+    start("Defrost", t, defrost)
 
 
 # REHEAT ====================================================================================================
@@ -211,44 +198,22 @@ def reheat():
             t = (m_reheat * 60) + s_reheat
             clearscreen()
             print(f"Anda akan melakukan REHEAT selama {m_reheat} menit dan {s_reheat} detik.")
-            start_reheat(t)
+            start("Reheat", t, reheat)
             bool_reheat = True
         else:
             print("Masukkan waktu kurang dari 30 menit!")
 
 
-# START REHEAT
-def start_reheat(t):
-    bool_start_reheat = False
-    while (bool_start_reheat == False):
-        start = int(input("Ketik 1 untuk START, 2 untuk BACK, atau 3 untuk MODE: "))
-        if (start == 1):
-            print("Memulai Reheat")
-            countdown(int(t))
-            bool_start_reheat = True
-        elif (start == 2):
-            reheat()
-            bool_start_reheat = True
-        elif (start == 3):
-            mode()
-            bool_start_reheat = True
-        else:
-            print("Pilihan tidak tersedia!")
-
-
 # QUICK ACTION ====================================================================================================
 def quick_action():
     clearscreen()
-    kategori = ["Veggies", "Bread", "Meat", "Fish", "Soup", "Beverage"]
+    array_qa = ["Veggies", "Bread", "Meat", "Fish", "Soup", "Beverage"]
     m_qa = [1, 0, 2, 1, 2, 1]
     s_qa = [30, 45, 0, 30, 0, 0]
-    n = 1
 
     print("\n======= QUICK ACTION =======")
     print("Pilih kategori quick action yang diinginkan: ")
-    for element in kategori:
-        print(f"{n}. {kategori[n-1]}")
-        n += 1
+    print_kategori(array_qa)
     
     bool_qa = False
     while (bool_qa == False):
@@ -257,29 +222,10 @@ def quick_action():
             t = (m_qa[pilihan_qa-1] * 60) + s_qa[pilihan_qa-1]
             clearscreen()
             print(f"Anda akan melakukan QUICK ACTION selama {m_qa[pilihan_qa-1]} menit dan {s_qa[pilihan_qa-1]} detik.")
-            start_quick_action(t)
+            start("Quick Action", t, quick_action)
             bool_qa = True
         else:
             print("Pilihan kategori tidak tersedia.")
-
-
-# START QUICK ACTION
-def start_quick_action(t):
-    bool_start_quick_action = False
-    while (bool_start_quick_action == False):
-        start = int(input("Ketik 1 untuk START, 2 untuk BACK, atau 3 untuk MODE: "))
-        if (start == 1):
-            print("Memulai Quick Action")
-            countdown(int(t))
-            bool_start_quick_action = True
-        elif (start == 2):
-            quick_action()
-            bool_start_quick_action = True
-        elif (start == 3):
-            mode()
-            bool_start_quick_action = True
-        else:
-            print("Pilihan tidak tersedia!")
 
 
 # MEMULAI PROGRAM MICROWAVE ====================================================================================================
