@@ -19,13 +19,25 @@ def countdown(t):
 
 # FUNGSI PRINT ARRAY
 def print_kategori(array):
+    
+    # KAMUS LOKAL
+    # array : array [0..n-1] of str
+
+    # ALGORITMA
             n = len(array)
             for i in range (n):
                 print(str(i+1) + ". " + array[i])
 
 
-# PILIHAN MODE ====================================================================================================
+# FUNGSI PILIHAN MODE ====================================================================================================
 def mode():
+    
+    # KAMUS LOKAL
+    # bool_mode : bool
+    # array_mode : ["Manual", "Defrost", "Reheat", "Quick Action"]
+    # mode : int
+
+    # ALGORITMA
     clearscreen()
     bool_mode = False
     while (bool_mode == False):
@@ -50,8 +62,14 @@ def mode():
     kembali()
 
 
-# KEMBALI KE MODE
+# FUNGSI KEMBALI KE MODE
 def kembali():
+    
+    # KAMUS LOKAL
+    # bool_kembali : bool
+    # kembali : int
+
+    # ALGORITMA
     bool_kembali = False
     while (bool_kembali == False):
         print("Apakah masih ingin menggunakan microwave?")
@@ -67,8 +85,15 @@ def kembali():
             print("Opsi berupa angka 1 atau 2!")
 
 
-# MANUAL ====================================================================================================
+# FUNGSI MANUAL ====================================================================================================
 def manual():
+    
+    # KAMUS LOKAL
+    # bool_suhu, bool_waktu : bool
+    # suhu : float
+    # t, m_manual, s_manual : int
+
+    # ALGORITMA
     clearscreen()
     print("\n======= MANUAL =======")
     
@@ -98,6 +123,12 @@ def manual():
 
 # FUNGSI START
 def start(jenis_mode, t, func):
+    
+    # KAMUS LOKAL
+    # bool : bool
+    # start : int
+
+    # ALGORITMA
     bool = False
     while (bool == False):
         start = int(input("Ketik 1 untuk START, 2 untuk BACK, atau 3 untuk MODE: "))
@@ -115,8 +146,15 @@ def start(jenis_mode, t, func):
             print("Pilihan tidak tersedia!")
 
 
-# DEFROST ====================================================================================================
+# FUNGSI DEFROST ====================================================================================================
 def defrost():
+    
+    # KAMUS LOKAL
+    # bool_defrost : bool
+    # array_defrost : ["Auto Defrost", "Quick Defrost"]
+    # opsi_defrost : int
+
+    # ALGORITMA
     clearscreen()
     print("\n======= DEFROST =======")
     bool_defrost = False
@@ -135,8 +173,19 @@ def defrost():
             print("Input tidak valid!")
 
 
-# AUTO DEFROST
+# FUNGSI AUTO DEFROST
 def auto_defrost():
+    
+    # KAMUS LOKAL
+    # array_ad = ["Meat", "Poultry", "Fish", "Bread"]
+    # m_ad = [6, 5, 5, 3]
+    # s_ad = [25, 15, 10, 50]
+    # level_ad = ["HIGH","HIGH","HIGH","LOW"]
+    # bool_bahan, bool_berat : bool
+    # pilihan_ad, menit_ad, detik_ad, t : int
+    # berat : float
+
+    # ALGORITMA
     clearscreen()
     array_ad = ["Meat", "Poultry", "Fish", "Bread"]
     m_ad = [6, 5, 5, 3]
@@ -172,8 +221,16 @@ def auto_defrost():
             print("Berat harus di antara 0.1 kg dan 4 kg!")
     
 
-# QUICK DEFROST
+# FUNGSI QUICK DEFROST
 def quick_defrost():
+    
+    # KAMUS LOKAL
+    # m_qd = 5
+    # s_qd = 30
+    # level_qd = "HIGH"
+    # t : int
+
+    # ALGORITMA
     clearscreen()
     m_qd = 5
     s_qd = 30
@@ -186,8 +243,14 @@ def quick_defrost():
     start("Defrost", t, defrost)
 
 
-# REHEAT ====================================================================================================
+# FUNGSI REHEAT ====================================================================================================
 def reheat():
+    
+    # KAMUS LOKAL
+    # bool_reheat : bool
+    # m_reheat, s_reheat, t : int
+
+    # ALGORITMA
     clearscreen()
     print("\n======= REHEAT =======")
     bool_reheat = False
@@ -204,8 +267,17 @@ def reheat():
             print("Masukkan waktu kurang dari 30 menit!")
 
 
-# QUICK ACTION ====================================================================================================
+# FUNGSI QUICK ACTION ====================================================================================================
 def quick_action():
+       
+    # KAMUS LOKAL
+    # array_qa = ["Veggies", "Bread", "Meat", "Fish", "Soup", "Beverage"]
+    # m_qa = [1, 0, 2, 1, 2, 1]
+    # s_qa = [30, 45, 0, 30, 0, 0]
+    # bool_qa : bool
+    # pilihan_qa, t : int
+
+    # ALGORITMA
     clearscreen()
     array_qa = ["Veggies", "Bread", "Meat", "Fish", "Soup", "Beverage"]
     m_qa = [1, 0, 2, 1, 2, 1]
