@@ -1,45 +1,35 @@
-import time
+from Clearscreen import clearscreen
+from Start import start
+from PrintArray import print_kategori
 
-# define the countdown func.
-def countdown(t):
-	
-	while t:
-		mins, secs = divmod(t, 60)
-		timer = '{:02d}:{:02d}'.format(mins, secs)
-		print(timer, end="\r")
-		time.sleep(1)
-		t -= 1
-	
-	print('Proses Selesai!!')
-
-kategori = ["Veggies", "Bread", "Meat", "Fish", "Soup", "Beverage"]
-waktu_menit = [1, 0, 2, 1, 2, 1]
-waktu_detik = [30, 45, 0, 30, 0, 0]
-n = len(kategori)
-
-# function Quick Action
+# FUNGSI QUICK ACTION ====================================================================================================
 def quick_action():
-    print("Pilih kategori quick action yang diinginkan:")
-    for i in range (n):
-        print(str(i+1) + ". " + kategori[i])
+       
+    # KAMUS LOKAL
+    # array_qa = ["Veggies", "Bread", "Meat", "Fish", "Soup", "Beverage"]
+    # m_qa = [1, 0, 2, 1, 2, 1]
+    # s_qa = [30, 45, 0, 30, 0, 0]
+    # bool_qa : bool
+    # pilihan_qa, t : int
 
-    x = int(input("Pilihan kategori: "))
-    if (0 < x <= 6):
-        t = (waktu_menit[x-1]*60) + waktu_detik[x-1]
-        print("Anda akan melakukan pemanasan selama " + str(waktu_menit[x-1]) + " menit " + str(waktu_detik[x-1]) + " detik ")
-    else:
-        print("Pilihan kategori tidak tersedia")
-    start_back(t)
+    # ALGORITMA
+    clearscreen()
+    array_qa = ["Veggies", "Bread", "Meat", "Fish", "Soup", "Beverage"]
+    m_qa = [1, 0, 2, 1, 2, 1]
+    s_qa = [30, 45, 0, 30, 0, 0]
 
-# function start atau back
-def start_back(t):
-        start = input("Ketik S untuk START atau Ketik B untuk BACK: ")
-        if start == "S":
-            print("Memulai Quick Action")
-            countdown(int(t))
-        elif start == "B":
-            quick_action()
-
-quick_action()
-
-
+    print("\n======= QUICK ACTION =======")
+    print("Pilih kategori quick action yang diinginkan: ")
+    print_kategori(array_qa)
+    
+    bool_qa = False
+    while (bool_qa == False):
+        pilihan_qa = int(input("Masukkan pilihan kategori: "))
+        if (0 < pilihan_qa <= 6):
+            t = (m_qa[pilihan_qa-1] * 60) + s_qa[pilihan_qa-1]
+            clearscreen()
+            print(f"Anda akan melakukan QUICK ACTION selama {m_qa[pilihan_qa-1]} menit dan {s_qa[pilihan_qa-1]} detik.")
+            start("Quick Action", t, quick_action)
+            bool_qa = True
+        else:
+            print("Pilihan kategori tidak tersedia.")

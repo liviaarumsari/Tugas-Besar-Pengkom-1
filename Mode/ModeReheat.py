@@ -1,37 +1,25 @@
-# import the time module
-import time
+from Clearscreen import clearscreen
+from Start import start
 
-# define the countdown func.
-def countdown(t):
-	
-	while t:
-		mins, secs = divmod(t, 60)
-		timer = '{:02d}:{:02d}'.format(mins, secs)
-		print(timer, end="\r")
-		time.sleep(1)
-		t -= 1
-	
-	print('Proses Selesai!!')
+# FUNGSI REHEAT ====================================================================================================
+def reheat():
+    
+    # KAMUS LOKAL
+    # bool_reheat : bool
+    # m_reheat, s_reheat, t : int
 
-
-# Process: conditional waktu (tentuin batas waktu trs diloop untuk minta input lain kalo input sebelumnya nggak memenuhi batas waktu, maks 30 menit)
-i = False
-while i == False:
-    # Input: waktu yang diinginkan (input menit, input detik [dipisah])
-    m = int(input("Masukkan menit: "))
-    s = int(input("Masukkan detik: "))
-    if m < 30:
-        i = True
-        t = (m * 60) + s
-    else:
-        print("Masukkan waktu kurang dari 30 menit")
-
-
-# function call
-print("Anda akan melakukan Reheat selama")
-start = input("Ketik S untuk START atau Ketik B untuk BACK: ")
-if start == "S":
-    print("Memulai Reheat")
-    countdown(int(t))
-
-
+    # ALGORITMA
+    clearscreen()
+    print("\n======= REHEAT =======")
+    bool_reheat = False
+    while (bool_reheat == False):
+        m_reheat = int(input("Masukkan menit: "))
+        s_reheat = int(input("Masukkan detik: "))
+        if (0 <= m_reheat < 30) and (s_reheat >= 0):
+            t = (m_reheat * 60) + s_reheat
+            clearscreen()
+            print(f"Anda akan melakukan REHEAT selama {m_reheat} menit dan {s_reheat} detik.")
+            start("Reheat", t, reheat)
+            bool_reheat = True
+        else:
+            print("Masukkan waktu kurang dari 30 menit!")

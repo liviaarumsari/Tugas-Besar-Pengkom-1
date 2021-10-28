@@ -1,78 +1,99 @@
-from Time import countdown
+from Clearscreen import clearscreen
+from Start import start
+from PrintArray import print_kategori
 
-
-# DEFROST
+# FUNGSI DEFROST ====================================================================================================
 def defrost():
+    
+    # KAMUS LOKAL
+    # bool_defrost : bool
+    # array_defrost : ["Auto Defrost", "Quick Defrost"]
+    # opsi_defrost : int
+
+    # ALGORITMA
+    clearscreen()
+    print("\n======= DEFROST =======")
     bool_defrost = False
-    while bool_defrost == False:
-        print("OPSI DEFROST: \n1. Auto Defrost \n2. Quick Defrost")
+    while (bool_defrost == False):
+        array_defrost = ["Auto Defrost", "Quick Defrost"]
+        print("Opsi Defrost: ")
+        print_kategori(array_defrost)
         opsi_defrost = int(input("Masukkan opsi defrost yang ingin dijalankan: "))
-        if opsi_defrost == 1:
+        if (opsi_defrost == 1):
             auto_defrost()
             bool_defrost = True
-        elif opsi_defrost == 2:
+        elif (opsi_defrost == 2):
             quick_defrost()
             bool_defrost = True
         else:
             print("Input tidak valid!")
 
 
-# AUTO DEFROST
+# FUNGSI AUTO DEFROST
 def auto_defrost():
-    bahan = ["Meat", "Poultry", "Fish", "Bread"]
-    menit = [5, 10, 5, 2]
-    detik = [25, 10, 10, 30]
-    level = "HIGH"
-    n = 1
+    
+    # KAMUS LOKAL
+    # array_ad = ["Meat", "Poultry", "Fish", "Bread"]
+    # m_ad = [6, 5, 5, 3]
+    # s_ad = [25, 15, 10, 50]
+    # level_ad = ["HIGH","HIGH","HIGH","LOW"]
+    # bool_bahan, bool_berat : bool
+    # pilihan_ad, menit_ad, detik_ad, t : int
+    # berat : float
 
-    print("AUTO DEFROST")
+    # ALGORITMA
+    clearscreen()
+    array_ad = ["Meat", "Poultry", "Fish", "Bread"]
+    m_ad = [6, 5, 5, 3]
+    s_ad = [25, 15, 10, 50]
+    level_ad = ["HIGH","HIGH","HIGH","LOW"]
+
+    print("\n======= AUTO DEFROST =======")
     print("Pilih jenis bahan untuk Auto Defrost:")
-    for element in bahan:
-        print(f"{n}. {bahan[n-1]}")
-        n += 1
+    print_kategori(array_ad)
     
-    bool_pilihan = False
-    while bool_pilihan == False:
-        pilihan = int(input("Masukkan pilihan jenis bahan: "))
-        if 0 < pilihan <= 4:
-            bool_berat = False
-            while bool_berat == False:
-                berat = float(input(f"Masukkan berat {bahan[pilihan-1]} dalam kilogram: "))
-                if 0.1 <= berat < 4:
-                    t = (menit[pilihan-1]*60) + detik[pilihan-1]
-                    print(f"Anda akan melakukan Auto Defrost selama {menit[pilihan-1]} menit dan {detik[pilihan-1]} detik dengan level {level}.")
-                    start_back(t)
-                    bool_berat = True # keluar dari while loop
-                elif berat < 0.1:
-                    print("Berat harus lebih dari 0.1 kg!")
-                elif berat > 4:
-                    print("Berat harus kurang dari 4 kg")
-            bool_pilihan = True # keluar dari while loop
+    # conditional bahan
+    bool_bahan = False
+    while (bool_bahan == False):
+        pilihan_ad = int(input("Masukkan pilihan jenis bahan: "))
+        if (0 < pilihan_ad <= 4):
+            bool_bahan = True
         else:
-            print("Input tidak valid") # tetap melakukan looping
+            print("Pilihan jenis bahan tidak tersedia!")
 
-
-# QUICK DEFROST
-def quick_defrost():
-    menit = 5
-    detik = 30
-    level = "HIGH"
-
-    t = (menit*60) + detik
-    print("QUICK DEFROST")
-    print(f"Anda akan melakukan Defrost selama {menit} menit dan {detik} detik dengan level {level}.")
+    # conditional berat
+    bool_berat = False
+    while bool_berat == False:
+        berat = float(input(f"Masukkan berat {array_ad[pilihan_ad-1]} dalam kilogram: "))
+        if (0.1 <= berat <= 4):
+            menit_ad = int(m_ad[pilihan_ad-1] - ((4-berat)//1))
+            detik_ad = s_ad[pilihan_ad-1]
+            t = (menit_ad*60) + detik_ad
+            clearscreen()
+            print(f"Anda akan melakukan AUTO DEFROST selama {menit_ad} menit dan {detik_ad} detik dengan level {level_ad[pilihan_ad-1]}.")
+            start("Defrost", t, defrost)
+            bool_berat = True
+        else:
+            print("Berat harus di antara 0.1 kg dan 4 kg!")
     
-    start_back(t)
 
+# FUNGSI QUICK DEFROST
+def quick_defrost():
+    
+    # KAMUS LOKAL
+    # m_qd = 5
+    # s_qd = 30
+    # level_qd = "HIGH"
+    # t : int
 
-# START ATAU BACK
-def start_back(t):
-    start = input("Ketik S untuk START atau Ketik B untuk BACK: ")
-    if start == "S":
-        print("Memulai Defrost")
-        countdown(int(t))
-    elif start == "B":
-        defrost()
+    # ALGORITMA
+    clearscreen()
+    m_qd = 5
+    s_qd = 30
+    level_qd = "HIGH"
 
-
-defrost()
+    t = (m_qd*60) + s_qd
+    print("\n======= QUICK DEFROST =======")
+    print(f"Anda akan melakukan QUICK DEFROST selama {m_qd} menit dan {s_qd} detik dengan level {level_qd}.")
+    
+    start("Defrost", t, defrost)
