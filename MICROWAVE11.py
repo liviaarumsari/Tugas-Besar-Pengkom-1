@@ -4,18 +4,12 @@ def clearscreen():
     os.system("cls")
 
 
-# TIME MODULE ====================================================================================================
-import time
+# IMPORT MODE MODULE ===========================================================================================
+import sys
+sys.path.append('./Mode')
 
-# COUNTDOWN
-def countdown(t):
-	while t:
-		menit, detik = divmod(t, 60)
-		timer = '{:02d}:{:02d}'.format(menit, detik)
-		print(timer, end="\r")
-		time.sleep(1)
-		t -= 1
-	print("PROSES SELESAI!\n")
+from Time import countdown
+
 
 # FUNGSI PRINT ARRAY
 def print_kategori(array):
