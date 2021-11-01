@@ -9,6 +9,7 @@ Anggota Kelompok:
 STRUKTUR FILE DAN FUNGSI
 
 A. FILE MICROWAVE11
+
 Program utama yang merupakan driver dari program Microwave. Melakukan import fungsi dari PrintArray, Clearscreen, ModeManual, ModeDefrost, ModeQuickAction, ModeReheat, dan ModeQuickAction. Pada file utama terdapat dua fungsi, yaitu fungsi mode untuk pemilihan mode dan fungsi kembali untuk pilihan menggunakan microwave kembali atau mematikan microwave.
 
 B. FOLDER MODE 
